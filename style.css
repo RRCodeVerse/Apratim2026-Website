@@ -16,6 +16,13 @@ body:not(.loading) #loader{opacity:0;pointer-events:none}
 @keyframes twinkle{to{opacity:.4}}
 @keyframes comet{to{transform:translate(140vw,50vh) rotate(20deg)}}
 
+/* ---------- Curtain transition (curtainFromLeft) ---------- */
+#curtain{position:fixed;inset:0;z-index:40;pointer-events:none;background:linear-gradient(90deg,#2a1530,#6b3a4a 60%,#c0693a);clip-path:inset(0 100% 0 0)}
+#curtain.in{animation:curtainIn .5s var(--ease) forwards}
+#curtain.out{animation:curtainOut .5s var(--ease) forwards}
+@keyframes curtainIn{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes curtainOut{from{clip-path:inset(0 0 0 0)}to{clip-path:inset(0 0 0 100%)}}
+
 /* ---------- Nav pill ---------- */
 nav{position:fixed;inset:0 0 auto 0;z-index:30;display:flex;justify-content:space-between;align-items:center;padding:14px 4vw}
 .logo{color:var(--gold);text-decoration:none;letter-spacing:.15em}
@@ -34,23 +41,11 @@ h2{font-size:clamp(2rem,5vw,3.5rem);color:var(--gold);margin-bottom:24px}
 /* ---------- Hero ---------- */
 #home{justify-content:flex-start;padding-top:14vh}
 .hero{text-align:center;z-index:3;display:grid;gap:10px;justify-items:center;text-shadow:0 2px 6px #000c,0 0 30px #000a;font-size:1.15rem}
-
-/* Parallax layers: JS sets --y */
-[data-speed]{will-change:transform;transform:translateY(var(--y,0))}
-.cloud{position:absolute;width:300px;animation:cloudDrift 40s linear infinite alternate}
-.c1{top:30%;left:6%}.c2{top:18%;left:60%;animation-duration:55s;width:240px}
-@keyframes cloudDrift{from{margin-left:-8vw}to{margin-left:20vw}}
-.dune{position:absolute;left:0;width:100%}
-.palace{position:absolute;bottom:20%;left:50%;margin-left:calc(min(70vw,760px)/-2);width:min(70vw,760px)}
-.camels{position:absolute;bottom:24%;left:2%;width:min(38vw,460px)}
-.d1{bottom:0}.d2{bottom:-4%}
-
 .logo-draw{width:min(90vw,820px);overflow:visible;filter:drop-shadow(0 0 18px #000)}
 .logo-draw text{font-family:"Cinzel Decorative",serif;font-size:100px;fill:transparent;stroke:#fff;stroke-width:2;stroke-dasharray:3000;stroke-dashoffset:3000}
 body:not(.loading) .logo-draw text{animation:drawLogo 2.4s var(--ease) forwards,fillLogo .8s 2s forwards}
 @keyframes drawLogo{to{stroke-dashoffset:0}}
 @keyframes fillLogo{to{fill:#fff}}
-
 .year{color:var(--gold);font-weight:600;letter-spacing:.2em;text-transform:uppercase;font-size:.95rem;background:#0008;padding:4px 14px;border-radius:20px}
 .hero>*:not(.logo-draw){opacity:0;transform:translateY(20px);transition:opacity .8s,transform .8s}
 body:not(.loading) .hero>*{opacity:1;transform:none}
@@ -63,21 +58,21 @@ body:not(.loading) .hero>*{opacity:1;transform:none}
 @keyframes sweep{60%,to{transform:translateX(120%)}}
 @keyframes bannerSelected{0%{transform:scale(1)}40%{transform:scale(.94)}75%{transform:scale(1.07)}to{transform:scale(1.04)}}
 
+/* Parallax layers: JS sets --y */
+[data-speed]{will-change:transform;transform:translateY(var(--y,0))}
+.cloud{position:absolute;width:300px;animation:cloudDrift 40s linear infinite alternate}
+.c1{top:30%;left:6%}.c2{top:18%;left:60%;animation-duration:55s;width:240px}
+@keyframes cloudDrift{from{margin-left:-8vw}to{margin-left:20vw}}
+.dune{position:absolute;left:0;width:100%}
+.palace{position:absolute;bottom:20%;left:50%;margin-left:calc(min(70vw,760px)/-2);width:min(70vw,760px)}
+.camels{position:absolute;bottom:24%;left:2%;width:min(38vw,460px)}
+.d1{bottom:0}.d2{bottom:-4%}
 .scroll-hint{position:absolute;bottom:20px;z-index:3;animation:bob 1.6s infinite}
 @keyframes bob{50%{transform:translateY(6px)}}
-
-/* ---------- Curtain transition (curtainFromLeft) ---------- */
-#curtain{position:fixed;inset:0;z-index:40;pointer-events:none;background:linear-gradient(90deg,#2a1530,#6b3a4a 60%,#c0693a);clip-path:inset(0 100% 0 0)}
-#curtain.in{animation:curtainIn .5s var(--ease) forwards}
-#curtain.out{animation:curtainOut .5s var(--ease) forwards}
-@keyframes curtainIn{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
-@keyframes curtainOut{from{clip-path:inset(0 0 0 0)}to{clip-path:inset(0 0 0 100%)}}
 
 /* ---------- Events: hanging sign + vases ---------- */
 /* text sits on the sign painted in events-bg */
 .sign{color:var(--sand);margin:0 0 4vh;text-shadow:0 3px 10px #000;transform-origin:top;animation:idle 5s ease-in-out infinite alternate}
-@keyframes idle{from{transform:rotate(-.7deg)}to{transform:rotate(.7deg)}}
-
 .vases{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(10px,4vw,50px);margin-top:30px}
 .vase{display:grid;justify-items:center;gap:6px;color:var(--peach);font-size:1.1rem;transition:filter .3s,transform .3s}
 .vase img{height:clamp(110px,18vw,200px);filter:drop-shadow(0 10px 18px #000b)}
@@ -111,6 +106,7 @@ body:not(.loading) .hero>*{opacity:1;transform:none}
 .lantern::before{content:"";position:absolute;left:50%;top:0;width:2px;height:18vh;background:var(--peach)}
 @keyframes swing{from{transform:rotate(-2deg)}to{transform:rotate(3deg) translateY(-6px)}}
 @keyframes flicker{0%,100%{opacity:.95}50%{opacity:.6}}
+@keyframes idle{from{transform:rotate(-.7deg)}to{transform:rotate(.7deg)}}
 
 /* ---------- Contact: parchment + polaroid ---------- */
 .contact-wrap{display:flex;flex-wrap:wrap;gap:40px;align-items:center;justify-content:center;width:min(1000px,100%)}
