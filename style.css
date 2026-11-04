@@ -72,3 +72,8 @@ body:not(.loading) .hero>*{opacity:1;transform:none}
 #curtain.out{animation:curtainOut .5s var(--ease) forwards}
 @keyframes curtainIn{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
 @keyframes curtainOut{from{clip-path:inset(0 0 0 0)}to{clip-path:inset(0 0 0 100%)}}
+
+/* ---------- Events: hanging sign + vases ---------- */
+/* text sits on the sign painted in events-bg */
+.sign{color:var(--sand);margin:0 0 4vh;text-shadow:0 3px 10px #000;transform-origin:top;animation:idle 5s ease-in-out infinite alternate}
+@keyframes idle{from{transform:rotate(-.7deg)}to{transform:rotate(.7deg)}}
