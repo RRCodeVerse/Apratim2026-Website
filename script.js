@@ -16,3 +16,10 @@ const activeIO = new IntersectionObserver(es => es.forEach(e => e.isIntersecting
   links.forEach(l => l.classList.toggle("active", l.hash === "#" + e.target.id))
 ), { threshold: 0.5 });
 document.querySelectorAll(".scene").forEach(s => activeIO.observe(s));
+
+// ---------- Parallax on hero layers ----------
+const layers = document.querySelectorAll("[data-speed]");
+addEventListener("scroll", () => {
+  const y = scrollY;
+  layers.forEach(l => l.style.setProperty("--y", `${y * l.dataset.speed}px`));
+}, { passive: true });
