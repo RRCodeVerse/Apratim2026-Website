@@ -65,3 +65,10 @@ body:not(.loading) .hero>*{opacity:1;transform:none}
 
 .scroll-hint{position:absolute;bottom:20px;z-index:3;animation:bob 1.6s infinite}
 @keyframes bob{50%{transform:translateY(6px)}}
+
+/* ---------- Curtain transition (curtainFromLeft) ---------- */
+#curtain{position:fixed;inset:0;z-index:40;pointer-events:none;background:linear-gradient(90deg,#2a1530,#6b3a4a 60%,#c0693a);clip-path:inset(0 100% 0 0)}
+#curtain.in{animation:curtainIn .5s var(--ease) forwards}
+#curtain.out{animation:curtainOut .5s var(--ease) forwards}
+@keyframes curtainIn{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes curtainOut{from{clip-path:inset(0 0 0 0)}to{clip-path:inset(0 0 0 100%)}}
