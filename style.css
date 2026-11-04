@@ -82,3 +82,22 @@ body:not(.loading) .hero>*{opacity:1;transform:none}
 .vase{display:grid;justify-items:center;gap:6px;color:var(--peach);font-size:1.1rem;transition:filter .3s,transform .3s}
 .vase img{height:clamp(110px,18vw,200px);filter:drop-shadow(0 10px 18px #000b)}
 .vase:hover{filter:brightness(1.25);transform:translateY(-8px)}
+
+/* Modal (eventsOverlayIn / eventsModalIn) */
+#modal{position:fixed;inset:0;z-index:35;display:grid;place-items:center;padding:16px;background:radial-gradient(#1b2a5ecc,#080a18ee);animation:overlayIn .35s}
+#modal[hidden]{display:none}
+.m-card{position:relative;width:min(900px,100%);display:grid;grid-template-columns:1.1fr 1fr;gap:30px;align-items:center;padding:40px;background:#0e0a24cc;border:1px solid var(--peach);border-radius:16px;animation:modalIn .5s var(--ease)}
+.m-card.swap .m-text,.m-card.swap .m-img{animation:eventAppear .45s var(--ease)}
+.m-text h3{font-family:"Cinzel Decorative",serif;color:var(--gold);font-size:2rem;margin-bottom:12px}
+.m-text p{color:var(--cream);line-height:1.6;margin-bottom:10px}
+.m-loc::before{content:"◆ ";color:var(--gold)}
+.m-text a{color:var(--gold)}
+.m-img{aspect-ratio:1;border-radius:10px;background:center/cover;filter:saturate(.7) contrast(1.1);box-shadow:0 10px 30px #000a}
+.m-close{position:absolute;top:10px;right:16px;font-size:2rem;color:var(--gold);transition:transform .2s,color .2s}
+.m-close:hover{transform:scale(1.15);color:#ffd36a}
+.m-nav{grid-column:1/-1;display:flex;justify-content:center;align-items:center;gap:24px;color:var(--peach)}
+.m-nav button{font-size:2rem;color:var(--gold);transition:transform .2s}
+.m-nav button:hover{transform:scale(1.2)}
+@keyframes overlayIn{from{opacity:0}}
+@keyframes modalIn{from{opacity:0;transform:translateY(25px) scale(.96)}}
+@keyframes eventAppear{from{opacity:0;transform:translateX(20px)}}
