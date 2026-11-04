@@ -50,3 +50,15 @@ h2{font-size:clamp(2rem,5vw,3.5rem);color:var(--gold);margin-bottom:24px}
 body:not(.loading) .logo-draw text{animation:drawLogo 2.4s var(--ease) forwards,fillLogo .8s 2s forwards}
 @keyframes drawLogo{to{stroke-dashoffset:0}}
 @keyframes fillLogo{to{fill:#fff}}
+
+.year{color:var(--gold);font-weight:600;letter-spacing:.2em;text-transform:uppercase;font-size:.95rem;background:#0008;padding:4px 14px;border-radius:20px}
+.hero>*:not(.logo-draw){opacity:0;transform:translateY(20px);transition:opacity .8s,transform .8s}
+body:not(.loading) .hero>*{opacity:1;transform:none}
+.hero>*:nth-child(2){transition-delay:1.6s}.hero>*:nth-child(3){transition-delay:1.8s}.hero>*:nth-child(4){transition-delay:2s}
+
+/* Register banner: light sweep + pop on click (regBtnSweep / bannerSelected) */
+.btn{background:linear-gradient(#b5523a,#7a2e22);color:var(--cream);border:2px solid var(--gold);padding:12px 40px;border-radius:6px;text-decoration:none;position:relative;overflow:hidden;letter-spacing:.1em;box-shadow:0 6px 20px #0008}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,#fff9 50%,transparent 70%);transform:translateX(-120%);animation:sweep 3s infinite}
+.btn.pop{animation:bannerSelected .4s}
+@keyframes sweep{60%,to{transform:translateX(120%)}}
+@keyframes bannerSelected{0%{transform:scale(1)}40%{transform:scale(.94)}75%{transform:scale(1.07)}to{transform:scale(1.04)}}
