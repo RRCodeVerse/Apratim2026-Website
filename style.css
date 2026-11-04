@@ -1,0 +1,8 @@
+/* Palette from NOTES.md */
+:root{--bg:#080a18;--sand:#eed8af;--peach:#f0cbb3;--gold:#e5ad2f;--cream:#f5eee3;--plum:#3d3364;--ease:cubic-bezier(.65,0,.35,1)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-snap-type:y proximity}
+body{background:var(--bg);color:var(--sand);font-family:"EB Garamond",Georgia,serif;overflow-x:hidden}
+body.loading{overflow:hidden}
+h1,h2,.logo,.pill a,.btn,.sign{font-family:"Cinzel Decorative",serif}
+button{font:inherit;cursor:pointer;background:none;border:0;color:inherit}
