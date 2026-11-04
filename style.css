@@ -62,3 +62,6 @@ body:not(.loading) .hero>*{opacity:1;transform:none}
 .btn.pop{animation:bannerSelected .4s}
 @keyframes sweep{60%,to{transform:translateX(120%)}}
 @keyframes bannerSelected{0%{transform:scale(1)}40%{transform:scale(.94)}75%{transform:scale(1.07)}to{transform:scale(1.04)}}
+
+.scroll-hint{position:absolute;bottom:20px;z-index:3;animation:bob 1.6s infinite}
+@keyframes bob{50%{transform:translateY(6px)}}
