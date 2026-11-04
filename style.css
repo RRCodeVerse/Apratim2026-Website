@@ -44,3 +44,9 @@ h2{font-size:clamp(2rem,5vw,3.5rem);color:var(--gold);margin-bottom:24px}
 .palace{position:absolute;bottom:20%;left:50%;margin-left:calc(min(70vw,760px)/-2);width:min(70vw,760px)}
 .camels{position:absolute;bottom:24%;left:2%;width:min(38vw,460px)}
 .d1{bottom:0}.d2{bottom:-4%}
+
+.logo-draw{width:min(90vw,820px);overflow:visible;filter:drop-shadow(0 0 18px #000)}
+.logo-draw text{font-family:"Cinzel Decorative",serif;font-size:100px;fill:transparent;stroke:#fff;stroke-width:2;stroke-dasharray:3000;stroke-dashoffset:3000}
+body:not(.loading) .logo-draw text{animation:drawLogo 2.4s var(--ease) forwards,fillLogo .8s 2s forwards}
+@keyframes drawLogo{to{stroke-dashoffset:0}}
+@keyframes fillLogo{to{fill:#fff}}
