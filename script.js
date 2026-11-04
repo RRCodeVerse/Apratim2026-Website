@@ -9,3 +9,10 @@ const tick = () => {
 };
 imgs.forEach(i => i.complete ? tick() : i.addEventListener("load", tick) || i.addEventListener("error", tick));
 setTimeout(() => document.body.classList.remove("loading"), 6000); // never block longer than 6 s
+
+// ---------- Active nav link ----------
+const links = document.querySelectorAll(".pill a");
+const activeIO = new IntersectionObserver(es => es.forEach(e => e.isIntersecting &&
+  links.forEach(l => l.classList.toggle("active", l.hash === "#" + e.target.id))
+), { threshold: 0.5 });
+document.querySelectorAll(".scene").forEach(s => activeIO.observe(s));
