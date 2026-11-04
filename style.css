@@ -101,3 +101,13 @@ body:not(.loading) .hero>*{opacity:1;transform:none}
 @keyframes overlayIn{from{opacity:0}}
 @keyframes modalIn{from{opacity:0;transform:translateY(25px) scale(.96)}}
 @keyframes eventAppear{from{opacity:0;transform:translateX(20px)}}
+
+/* ---------- About: lanterns (flicker / swing) ---------- */
+.about{max-width:700px;text-align:center;z-index:2;font-size:1.2rem;line-height:1.7}
+.stats{display:flex;justify-content:center;gap:40px;margin-top:36px}
+.stats b{display:block;font-size:2.4rem;color:var(--gold);font-family:"Cinzel Decorative",serif}
+.lantern{position:absolute;top:0;width:clamp(50px,7vw,90px);transform-origin:top;animation:swing 3.5s ease-in-out infinite alternate,flicker 1.6s infinite;filter:drop-shadow(0 0 22px #e5ad2f)}
+.lantern img{display:block;width:100%;margin-top:18vh}
+.lantern::before{content:"";position:absolute;left:50%;top:0;width:2px;height:18vh;background:var(--peach)}
+@keyframes swing{from{transform:rotate(-2deg)}to{transform:rotate(3deg) translateY(-6px)}}
+@keyframes flicker{0%,100%{opacity:.95}50%{opacity:.6}}
