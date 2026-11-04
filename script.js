@@ -41,3 +41,16 @@ document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener("click
     a.classList.remove("pop");
   }, 500);
 }));
+
+// ---------- Placeholder data: edit freely ----------
+const events = {
+  Drama: [["Stage Play", "Original one-act plays on the main stage.", "Main Auditorium"], ["Street Play", "Nukkad natak with a social message.", "Central Lawns"]],
+  Dance: [["Choreo", "Group choreography showdown.", "Open Air Theatre"], ["Street Dance", "Crew vs crew battles.", "Central Lawns"], ["Solo Dance", "Classical and contemporary solos.", "Main Auditorium"]],
+  Music: [["Pitch Perfect", "Solo singing competition.", "Music Room"], ["Battle of Bands", "Live bands, one stage.", "Open Air Theatre"]],
+  Photography: [["Frames", "Theme-based photo contest.", "Online"]],
+  Other: [["Fashion Show", "Theme walk and styling.", "Main Auditorium"]],
+};
+
+// ---------- Events: vases open a modal carousel ----------
+$("vases").innerHTML = Object.keys(events).map(cat =>
+  `<button class="vase" data-cat="${cat}"><img src="assets/vase.webp" alt="">${cat}</button>`).join("");
