@@ -23,3 +23,21 @@ addEventListener("scroll", () => {
   const y = scrollY;
   layers.forEach(l => l.style.setProperty("--y", `${y * l.dataset.speed}px`));
 }, { passive: true });
+
+// ---------- Curtain wipe between sections ----------
+document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener("click", e => {
+  const target = document.querySelector(a.getAttribute("href"));
+  if (!target) return;
+  e.preventDefault();
+  if (a.classList.contains("btn")) a.classList.add("pop");
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return target.scrollIntoView();
+  const c = $("curtain");
+  c.className = "in";
+  setTimeout(() => {
+    document.documentElement.style.scrollBehavior = "auto";
+    target.scrollIntoView();
+    document.documentElement.style.scrollBehavior = "";
+    c.className = "out";
+    a.classList.remove("pop");
+  }, 500);
+}));
