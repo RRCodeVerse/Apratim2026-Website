@@ -54,3 +54,28 @@ const events = {
 // ---------- Events: vases open a modal carousel ----------
 $("vases").innerHTML = Object.keys(events).map(cat =>
   `<button class="vase" data-cat="${cat}"><img src="assets/vase.webp" alt="">${cat}</button>`).join("");
+
+let list = [], idx = 0;
+const show = () => {
+  const [t, d, loc] = list[idx];
+  $("m-title").textContent = t; $("m-desc").textContent = d; $("m-loc").textContent = loc;
+  $("m-img").style.backgroundImage = "url(assets/about-bg.webp)"; // shortcut: placeholder photo, swap per event later
+  $("m-count").textContent = `${idx + 1} / ${list.length}`;
+  const card = document.querySelector(".m-card");
+  card.classList.remove("swap"); void card.offsetWidth; card.classList.add("swap");
+};
+$("vases").addEventListener("click", e => {
+  const v = e.target.closest(".vase"); if (!v) return;
+  list = events[v.dataset.cat]; idx = 0; show(); $("modal").hidden = false;
+});
+const close = () => $("modal").hidden = true;
+document.querySelector(".m-close").onclick = close;
+$("modal").addEventListener("click", e => e.target.id === "modal" && close());
+$("m-prev").onclick = () => { idx = (idx - 1 + list.length) % list.length; show(); };
+$("m-next").onclick = () => { idx = (idx + 1) % list.length; show(); };
+addEventListener("keydown", e => {
+  if ($("modal").hidden) return;
+  if (e.key === "Escape") close();
+  if (e.key === "ArrowLeft") $("m-prev").click();
+  if (e.key === "ArrowRight") $("m-next").click();
+});
