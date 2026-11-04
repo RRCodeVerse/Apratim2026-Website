@@ -22,3 +22,25 @@ nav{position:fixed;inset:0 0 auto 0;z-index:30;display:flex;justify-content:spac
 .pill{background:#3d3364ab;border:1.5px solid var(--peach);border-radius:40px;padding:8px 10px;backdrop-filter:blur(6px)}
 .pill a{color:var(--peach);text-decoration:none;margin:0 12px;display:inline-block;font-size:.9rem;transition:transform .2s}
 .pill a:hover,.pill a.active{transform:scale(1.1);color:var(--gold)}
+
+/* ---------- Scenes ---------- */
+.scene{position:relative;min-height:100vh;overflow:hidden;scroll-snap-align:start;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:90px 5vw 50px}
+.night{background:#1b1650 url(assets/bg.webp) center/cover}
+.dusk{background:linear-gradient(#0007,#0007),#4a2a5e url(assets/events-bg.webp) center/cover}
+.plum{background:linear-gradient(#0009,#0009),#3d2a5e url(assets/about-bg.webp) center/cover}
+.dawn{background:linear-gradient(#0006,#0006),#3d2a5e url(assets/contact-bg.webp) center/cover}
+h2{font-size:clamp(2rem,5vw,3.5rem);color:var(--gold);margin-bottom:24px}
+
+/* ---------- Hero ---------- */
+#home{justify-content:flex-start;padding-top:14vh}
+.hero{text-align:center;z-index:3;display:grid;gap:10px;justify-items:center;text-shadow:0 2px 6px #000c,0 0 30px #000a;font-size:1.15rem}
+
+/* Parallax layers: JS sets --y */
+[data-speed]{will-change:transform;transform:translateY(var(--y,0))}
+.cloud{position:absolute;width:300px;animation:cloudDrift 40s linear infinite alternate}
+.c1{top:30%;left:6%}.c2{top:18%;left:60%;animation-duration:55s;width:240px}
+@keyframes cloudDrift{from{margin-left:-8vw}to{margin-left:20vw}}
+.dune{position:absolute;left:0;width:100%}
+.palace{position:absolute;bottom:20%;left:50%;margin-left:calc(min(70vw,760px)/-2);width:min(70vw,760px)}
+.camels{position:absolute;bottom:24%;left:2%;width:min(38vw,460px)}
+.d1{bottom:0}.d2{bottom:-4%}
