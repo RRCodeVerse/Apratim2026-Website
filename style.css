@@ -15,3 +15,10 @@ body:not(.loading) #loader{opacity:0;pointer-events:none}
 .stars::after{content:"";position:absolute;top:20%;left:-20%;width:160px;height:2px;background:linear-gradient(90deg,transparent,#fff);border-radius:2px;box-shadow:0 0 12px #fff;animation:comet 2.4s linear infinite}
 @keyframes twinkle{to{opacity:.4}}
 @keyframes comet{to{transform:translate(140vw,50vh) rotate(20deg)}}
+
+/* ---------- Nav pill ---------- */
+nav{position:fixed;inset:0 0 auto 0;z-index:30;display:flex;justify-content:space-between;align-items:center;padding:14px 4vw}
+.logo{color:var(--gold);text-decoration:none;letter-spacing:.15em}
+.pill{background:#3d3364ab;border:1.5px solid var(--peach);border-radius:40px;padding:8px 10px;backdrop-filter:blur(6px)}
+.pill a{color:var(--peach);text-decoration:none;margin:0 12px;display:inline-block;font-size:.9rem;transition:transform .2s}
+.pill a:hover,.pill a.active{transform:scale(1.1);color:var(--gold)}
