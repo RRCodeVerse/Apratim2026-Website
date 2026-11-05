@@ -42,12 +42,20 @@ body:not(.loading) #loader{opacity:0;pointer-events:none}
 @keyframes curtainIn{from{transform:translateY(130%)}to{transform:translateY(0)}}
 @keyframes curtainOut{from{transform:translateY(0)}to{transform:translateY(-130%)}}
 
-/* ---------- Nav pill ---------- */
+/* ---------- Nav pill & Sound Toggle ---------- */
 nav{position:fixed;inset:0 0 auto 0;z-index:30;display:flex;justify-content:space-between;align-items:center;padding:14px 4vw}
 .logo{color:var(--gold);text-decoration:none;letter-spacing:.15em}
+.nav-controls{display:flex;align-items:center;gap:12px}
 .pill{background:#3d3364ab;border:1.5px solid var(--peach);border-radius:40px;padding:8px 10px;backdrop-filter:blur(6px)}
 .pill a{color:var(--peach);text-decoration:none;margin:0 12px;display:inline-block;font-size:.9rem;transition:color .3s ease}
 .pill a:hover,.pill a.active{color:var(--gold)}
+
+/* Sound Toggle Icon Button */
+.sound-btn{background:#3d3364ab;border:1.5px solid var(--peach);border-radius:50%;width:42px;height:42px;color:var(--peach);backdrop-filter:blur(6px);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s ease;box-shadow:0 4px 15px #0006;user-select:none;flex-shrink:0}
+.sound-btn:hover{color:var(--gold);border-color:var(--gold);box-shadow:0 0 16px #e5ad2f66;transform:scale(1.08)}
+.sound-btn.playing{color:var(--gold);border-color:var(--gold)}
+.sound-btn.muted{color:var(--sand);opacity:.75}
+.sound-icon{width:20px;height:20px;fill:currentColor;flex-shrink:0}
 
 /* ---------- Scenes ---------- */
 .scene{position:relative;min-height:100vh;min-height:100svh;overflow:hidden;scroll-snap-align:start;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:90px 5vw 50px}
@@ -154,8 +162,11 @@ footer{margin-top:40px;opacity:.75}
   #curtain .tc{width:46vw!important}
   .logo{display:none}
   nav{justify-content:center;padding:max(10px,env(safe-area-inset-top)) 12px 0}
-  .pill{width:100%;display:flex;justify-content:space-between;padding:4px}
-  .pill a{margin:0;padding:11px 8px;font-size:.7rem;flex:1;text-align:center;white-space:nowrap}
+  .nav-controls{width:100%;display:flex;align-items:center;gap:8px}
+  .pill{flex:1;min-width:0;display:flex;justify-content:space-between;padding:4px}
+  .pill a{margin:0;padding:11px 6px;font-size:.68rem;flex:1;text-align:center;white-space:nowrap}
+  .sound-btn{width:38px;height:38px}
+  .sound-icon{width:18px;height:18px}
   .scene{padding:84px 18px 40px}
   #home{padding-top:16svh}
   .hero{font-size:1rem}
