@@ -1,82 +1,33 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FESTNAME 2026 – Mockup</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=EB+Garamond:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-</head>
-<body class="loading">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#080a18" />
+    <title>Apratim 2026</title>
+    <meta name="description" content="Apratim 2026 – The annual fest of CCET Chandigarh featuring dance, music, drama, art, gaming, debates and celebrations." />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Apratim 2026" />
+    <meta property="og:description" content="Apratim 2026 – The annual fest of CCET Chandigarh featuring dance, music, drama, art, gaming, debates and celebrations." />
+    <meta property="og:image" content="/assets/moon.webp" />
 
-<!-- Loader: starfield + % counter -->
-<div id="loader"><div class="stars"></div><b id="pct">0%</b></div>
-<!-- Curtain wipe used for section transitions -->
-<div id="curtain"></div>
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Apratim 2026" />
+    <meta name="twitter:description" content="Apratim 2026 – The annual fest of CCET Chandigarh featuring dance, music, drama, art, gaming, debates and celebrations." />
 
-<nav>
-  <a href="#home" class="logo">FESTNAME</a>
-  <div class="pill"><a href="#home">Home</a><a href="#events">Events</a><a href="#about">About Us</a><a href="#contact">Contact Us</a></div>
-</nav>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-<section id="home" class="scene night">
-  <img class="cloud c1" src="assets/cloud1.webp" alt="" data-speed="0.25">
-  <img class="cloud c2" src="assets/cloud2.webp" alt="" data-speed="0.35">
-  <img class="palace" src="assets/palace.webp" alt="" data-speed="0.2">
-  <img class="dune d1" src="assets/dune-back.webp" alt="" data-speed="0.3">
-  <img class="camels" src="assets/camels.webp" alt="" data-speed="0.4">
-  <img class="dune d2" src="assets/dune-front.webp" alt="" data-speed="0.5">
-  <div class="hero">
-    <svg class="logo-draw" viewBox="0 0 900 140" role="img" aria-label="FESTNAME">
-      <text x="50%" y="110" text-anchor="middle" textLength="860" lengthAdjust="spacingAndGlyphs">FESTNAME</text>
-    </svg>
-    <p class="year">'26 · The 54th Edition</p>
-    <p>12 – 15 March · Your College, City</p>
-    <a class="btn" href="#events">Register</a>
-  </div>
-  <div class="scroll-hint">scroll ↓</div>
-</section>
-
-<section id="events" class="scene dusk">
-  <h2 class="sign reveal">Events</h2>
-  <div class="vases" id="vases"></div>
-</section>
-
-<div id="modal" hidden>
-  <div class="m-card">
-    <button class="m-close" aria-label="Close">×</button>
-    <div class="m-text"><h3 id="m-title"></h3><p id="m-desc"></p><p class="m-loc" id="m-loc"></p><a href="#" id="m-rule">Rulebook</a></div>
-    <div class="m-img" id="m-img"></div>
-    <div class="m-nav"><button id="m-prev" aria-label="Previous">‹</button><span id="m-count"></span><button id="m-next" aria-label="Next">›</button></div>
-  </div>
-</div>
-
-<section id="about" class="scene plum">
-  <div class="lantern" style="left:10%"><img src="assets/lantern.webp" alt=""></div>
-  <div class="lantern" style="left:84%;animation-delay:-1.5s,-.4s"><img src="assets/lantern.webp" alt=""></div>
-  <div class="about reveal">
-    <h2>About Us</h2>
-    <p>Placeholder text: a student-run festival of dance, drama, music, art and ideas, bringing thousands together for four unforgettable days. Replace this with your fest's story.</p>
-    <div class="stats">
-      <div><b data-count="50">0</b><small>Events</small></div>
-      <div><b data-count="15000">0</b><small>Footfall</small></div>
-      <div><b data-count="54">0</b><small>Years</small></div>
-    </div>
-  </div>
-</section>
-
-<section id="contact" class="scene dawn">
-  <div class="contact-wrap">
-    <div class="parchment reveal">
-      <h2>Contact Us</h2>
-      <ul id="depts"></ul>
-    </div>
-    <div class="polaroid reveal" id="polaroid"><div class="ph"></div><b id="p-name"></b><a id="p-mail"></a></div>
-  </div>
-  <footer>© 2026 FESTNAME</footer>
-</section>
-
-<script src="script.js"></script>
-</body>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=EB+Garamond:wght@400;600&display=swap" rel="stylesheet" />
+  </head>
+  <body class="loading">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
