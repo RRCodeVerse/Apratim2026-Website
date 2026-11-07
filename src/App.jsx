@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import events from "./data/events.js";
 import depts from "./data/depts.js";
+import EventsSection from "./events/EventsSection.jsx";
 
 const cats = Object.keys(events);
 const NAV = [["home", "Home"], ["events", "Events"], ["about", "About Us"], ["contact", "Contact Us"]];

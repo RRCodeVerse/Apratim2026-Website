@@ -1,0 +1,167 @@
+/* Events module styles — scoped with the ev- prefix; nothing global is changed.
+   Vase image sizes are copied from the existing site:
+   desktop clamp(110px,18vw,200px), mobile (<=700px) 92px. */
+
+.ev-row{
+  --ev-vase:clamp(110px,18vw,200px);
+  --ev-gap:clamp(10px,4vw,50px);
+  --ev-headroom:8px;                       /* room above vases for the hover scroll */
+  width:min(1180px,100%);
+  margin-top:10px;
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr) auto;
+  align-items:end;
+  column-gap:clamp(6px,1.5vw,18px);
+}
+/* desktop with a real pointer: reserve space for the emerging scroll */
+@media (hover:hover) and (pointer:fine) and (min-width:701px){
+  /* shrinks on short screens so the whole vase + its name stay in view */
+  .ev-row{--ev-headroom:clamp(120px,calc(100svh - 500px),230px)}
+}
+@media (max-width:700px){
+  .ev-row{--ev-vase:92px;margin-top:20px}
+}
+
+/* track */
+.ev-track{
+  list-style:none;margin:0;padding:var(--ev-headroom) 4px 16px;
+  display:flex;align-items:flex-end;gap:var(--ev-gap);
+  overflow-x:auto;overflow-y:hidden;
+  scroll-snap-type:x proximity;
+  overscroll-behavior-x:contain;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch;
+}
+.ev-track::-webkit-scrollbar{display:none}
+.ev-item{flex:0 0 auto;width:max(var(--ev-vase),120px);scroll-snap-align:center;display:flex;justify-content:center}
+
+/* vase */
+.ev-vase{
+  display:grid;justify-items:center;align-content:start;gap:6px;width:100%;
+  color:var(--peach);font-size:1.1rem;line-height:1.2;text-align:center;
+  border-radius:12px;
+}
+.ev-vase-img{height:var(--ev-vase);width:auto;filter:drop-shadow(0 10px 18px #000b);user-select:none;-webkit-user-drag:none}
+.ev-vase-name{display:block;text-shadow:0 2px 8px #000}
+.ev-vase:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+@media (max-width:700px){.ev-vase{font-size:.95rem}}
+
+/* arrows (shown on every screen size) */
+.ev-arrow{
+  align-self:center;margin-top:var(--ev-headroom);
+  width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
+  color:var(--gold);background:#0e0a24cc;border:1px solid var(--gold);
+  box-shadow:0 4px 14px #000a;transition:filter .3s ease,opacity .3s ease,transform .3s var(--ease);
+}
+@media (hover:hover){.ev-arrow:not(:disabled):hover{filter:brightness(1.3);transform:scale(1.08)}}
+.ev-arrow:not(:disabled):active{filter:brightness(1.3)}
+.ev-arrow:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.ev-arrow:disabled{opacity:.3;cursor:default}
+@media (max-width:700px){.ev-arrow{width:38px;height:38px}.ev-arrow svg{width:18px;height:18px}}
+@media (prefers-reduced-motion:reduce){.ev-arrow{transition:none}}
+
+/* =====================================================================
+   Phase 4 — golden glow on the hovered vase + parchment scroll
+   (vase size and position are never changed by hover)
+   ===================================================================== */
+.ev-track{padding-inline:26px}          /* room so the glow ring isn't clipped at the ends */
+.ev-vase{position:relative}
+.ev-vase-art{position:relative;display:block;line-height:0;isolation:isolate}
+.ev-vase-img{transition:filter .45s ease}
+.ev-vase-name{transition:color .35s ease}
+
+/* glow pool behind the base + ring around the base */
+.ev-vase-art::before,.ev-vase-art::after{
+  content:"";position:absolute;left:50%;pointer-events:none;border-radius:50%;
+  opacity:0;transition:opacity .45s ease;
+}
+.ev-vase-art::before{                       /* soft golden pool, behind the vase */
+  z-index:-1;bottom:-6%;width:135%;height:34%;transform:translateX(-50%);
+  background:radial-gradient(ellipse at center,#ffd777f0 0%,#ffb02e88 38%,#ffb02e00 72%);
+  filter:blur(3px);
+}
+.ev-vase-art::after{                        /* thin glowing ring around the base */
+  z-index:1;bottom:-1%;width:118%;height:20%;transform:translateX(-50%);
+  border:2px solid #ffd770;
+  box-shadow:0 0 14px 2px #ffb82ecc,inset 0 0 12px #ffb82e88;
+}
+/* a few twinkling sparks above the vase */
+.ev-vase::after{
+  content:"";position:absolute;left:0;right:0;top:-6%;height:var(--ev-vase);pointer-events:none;opacity:0;
+  background:
+    radial-gradient(circle,#fff6c9 0 1.5px,transparent 2.5px) 18% 22%/auto no-repeat,
+    radial-gradient(circle,#ffd770 0 1.5px,transparent 2.5px) 80% 14%/auto no-repeat,
+    radial-gradient(circle,#fff6c9 0 2px,transparent 3px) 88% 52%/auto no-repeat,
+    radial-gradient(circle,#ffd770 0 1.5px,transparent 2.5px) 8% 60%/auto no-repeat,
+    radial-gradient(circle,#fff6c9 0 1.5px,transparent 2.5px) 60% 4%/auto no-repeat;
+}
+
+.ev-vase[data-active="true"] .ev-vase-img{
+  filter:drop-shadow(0 0 14px #ffb82ecc) drop-shadow(0 10px 18px #000b);
+}
+.ev-vase[data-active="true"] .ev-vase-name{color:var(--gold)}
+.ev-vase[data-active="true"] .ev-vase-art::before,
+.ev-vase[data-active="true"] .ev-vase-art::after{opacity:1}
+.ev-vase[data-active="true"] .ev-vase-art::after{animation:ev-ring 2.4s ease-in-out infinite}
+.ev-vase[data-active="true"]::after{opacity:1;animation:ev-twinkle 1.8s ease-in-out infinite}
+@keyframes ev-ring{50%{transform:translateX(-50%) scale(1.07);box-shadow:0 0 22px 4px #ffb82e,inset 0 0 14px #ffb82e}}
+@keyframes ev-twinkle{50%{opacity:.35}}
+
+/* the scroll (portal on <body>, fixed position set from JS) */
+.ev-scroll{
+  position:fixed;z-index:25;transform:translateX(-50%);
+  display:block;text-align:center;cursor:pointer;color:#4a1626;
+  font-family:"EB Garamond",Georgia,serif;
+}
+.ev-scroll-body{
+  position:relative;display:block;transform-origin:50% 100%;
+  filter:drop-shadow(0 0 20px #ffb82ecc) drop-shadow(0 10px 16px #000a);
+  animation:ev-unroll .5s var(--ease) both;
+}
+.ev-roll{
+  position:relative;z-index:2;display:block;height:20px;border-radius:10px;
+  background:linear-gradient(#7a4a1a,#f1d594 38%,#c8903f 68%,#6f4216);
+  box-shadow:0 3px 6px #0007;
+}
+.ev-roll::before,.ev-roll::after{
+  content:"";position:absolute;top:-3px;width:26px;height:26px;border-radius:50%;
+  background:radial-gradient(circle at 40% 35%,#ffe6a6,#c58a35 60%,#7a4a1a);box-shadow:0 2px 4px #0008;
+}
+.ev-roll::before{left:-8px}.ev-roll::after{right:-8px}
+.ev-paper{
+  position:relative;z-index:1;display:grid;gap:5px;justify-items:center;
+  margin:-8px 14px;padding:22px 14px 20px;
+  background:
+    radial-gradient(ellipse at 50% 35%,#fbecc4 0%,#f0d39a 62%,#d9ac66 100%);
+  box-shadow:inset 0 0 22px #8a5a2466;
+}
+.ev-s-title{font-size:1.45rem;font-style:italic;font-weight:600;line-height:1.1;color:#4a1226}
+.ev-s-kw{font-size:.95rem;font-weight:600;letter-spacing:.02em}
+.ev-s-desc{font-size:.9rem;line-height:1.3;max-width:26ch}
+.ev-s-cta{
+  margin-top:4px;padding:6px 16px;border-radius:999px;
+  background:linear-gradient(#5a1630,#3a0c20);color:#f4cf7a;border:1px solid #d6a24a;
+  font-size:.9rem;font-weight:600;box-shadow:0 2px 6px #0007;
+}
+.ev-paper>*{animation:ev-fade .4s .2s both}
+.ev-scroll:hover .ev-s-cta,.ev-scroll:focus-visible .ev-s-cta{filter:brightness(1.25)}
+
+/* red tassels hanging at the top-left corner */
+.ev-tassel{position:absolute;z-index:3;top:14px;width:6px;border-radius:3px 3px 5px 5px;background:linear-gradient(#c02a36,#7d1019)}
+.ev-tassel::before{content:"";position:absolute;top:-4px;left:-1px;width:8px;height:8px;border-radius:50%;background:#e2b350}
+.ev-tassel-a{left:10px;height:44px}
+.ev-tassel-b{left:22px;height:32px}
+
+@keyframes ev-unroll{
+  from{opacity:0;transform:translateY(16px) scaleY(.12)}
+  55%{opacity:1}
+  to{opacity:1;transform:none}
+}
+@keyframes ev-fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* touch screens: no hover glow/scroll (taps open the popup directly) */
+@media (hover:none){
+  .ev-vase-art::before,.ev-vase-art::after,.ev-vase::after{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .ev-scroll-body,.ev-paper>*,.ev-vase[data-active="true"] .ev-vase-art::after,.ev-vase[data-active="true"]::after{animation:none}
+}
