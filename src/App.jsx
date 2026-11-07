@@ -213,12 +213,7 @@ export default function App() {
 
       <section id="events" className="scene dusk">
         <h2 className="sign reveal">Events</h2>
-        <div className="vases" id="vases">
-          {cats.map(c =>
-            <button key={c} className="vase" onClick={() => { setCat(c); setIdx(0); }}>
-              <img src="/assets/vase.webp" alt="" />{c}
-            </button>)}
-        </div>
+        <EventsSection />
       </section>
 
       <div id="modal" hidden={!cat} onClick={e => e.target.id === "modal" && setCat(null)}>
